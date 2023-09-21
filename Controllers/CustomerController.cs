@@ -7,12 +7,14 @@ namespace CustomerApi.Controllers;
 [Route("api/[controller]")]
 public class CustomerController : Controller
 {
+    
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(CustomerDto))]
     public async Task<List<IActionResult>> GetCustomers()
     {
         throw new NotImplementedException();
     }
+    
     
     //api/customer/{Id}
     [HttpGet("{Id}")]
@@ -24,12 +26,14 @@ public class CustomerController : Controller
         return new OkObjectResult(vacio);
     }
     
+    
     [HttpDelete("{Id}")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     public async Task<bool> DeletedCustomers(long Id)
     {
         throw new NotImplementedException();
     }
+    
     
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(CustomerDto))]
@@ -38,6 +42,7 @@ public class CustomerController : Controller
         var vacio = new CustomerDto();
         return new CreatedResult($"http://localhost:5251/api/customer/{vacio.Id}", null);
     }
+    
     
     [HttpPut]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(CustomerDto))]
