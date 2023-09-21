@@ -8,32 +8,40 @@ namespace CustomerApi.Controllers;
 public class CustomerController : Controller
 {
     [HttpGet]
-    public async Task<List<CustomerDto>> GetCustomers()
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(CustomerDto))]
+    public async Task<List<IActionResult>> GetCustomers()
     {
         throw new NotImplementedException();
     }
     
     //api/customer/{Id}
     [HttpGet("{Id}")]
-    public async Task<CustomerDto> GetCustomer(long Id)
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(CustomerDto))]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> GetCustomer(long Id)
     {
-        throw new NotImplementedException();
+        var vacio = new CustomerDto();
+        return new OkObjectResult(vacio);
     }
     
-    [HttpDelete]
+    [HttpDelete("{Id}")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     public async Task<bool> DeletedCustomers(long Id)
     {
         throw new NotImplementedException();
     }
     
     [HttpPost]
-    public async Task<CustomerDto> CreateCustomer(CreateCustomerDtos customer)
+    [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(CustomerDto))]
+    public async Task<IActionResult> CreateCustomer(CreateCustomerDtos customer)
     {
-        throw new NotImplementedException();
+        var vacio = new CustomerDto();
+        return new CreatedResult($"http://localhost:5251/api/customer/{vacio.Id}", null);
     }
     
     [HttpPut]
-    public async Task<CustomerDto> UpdateCustomers(CustomerDto customer)
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(CustomerDto))]
+    public async Task<IActionResult> UpdateCustomers(CustomerDto customer)
     {
         throw new NotImplementedException();
     }
